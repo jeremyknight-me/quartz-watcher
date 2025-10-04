@@ -1,1 +1,12 @@
-<Solution />
+<Solution>
+  <Folder Name="/0 Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Folder Name="/Aspire/">
+    <Project Path="QuartzWatcher.AppHost/QuartzWatcher.AppHost.csproj" />
+    <Project Path="QuartzWatcher.ServiceDefaults/QuartzWatcher.ServiceDefaults.csproj" />
+  </Folder>
+  <Project Path="QuartzWatcher/QuartzWatcher.csproj" Id="f432af41-9600-436b-8152-d220981e72ad" />
+</Solution>
