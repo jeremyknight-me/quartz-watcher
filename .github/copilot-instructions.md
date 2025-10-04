@@ -1,5 +1,5 @@
 # Project Overview
-This project is a task management app built with React and Node.js
+This project is a Quartz.NET monitoring and management application built with .NET
 
 ## Folder Structure
 - `/src`: All source code including unit tests
