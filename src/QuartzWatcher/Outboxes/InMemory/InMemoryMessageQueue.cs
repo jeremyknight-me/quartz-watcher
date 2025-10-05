@@ -13,6 +13,13 @@ internal sealed class InMemoryMessageQueue
     //        FullMode = BoundedChannelFullMode.Wait
     //    });
 
+    /// <summary>
+    /// Gets the reader for consuming messages from the queue.
+    /// </summary>
     public ChannelReader<QuartzMessage> Reader => _channel.Reader;
+
+    /// <summary>
+    /// Gets the writer for producing messages to the queue.
+    /// </summary>
     public ChannelWriter<QuartzMessage> Writer => _channel.Writer;
 }

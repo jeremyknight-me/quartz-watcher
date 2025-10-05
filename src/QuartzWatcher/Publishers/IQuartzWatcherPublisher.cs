@@ -5,5 +5,11 @@
 /// </summary>
 public interface IQuartzWatcherPublisher
 {
-    public Task PublishAsync(QuartzMessage message, CancellationToken cancellationToken = default);
+    /// <summary>
+    /// Publishes a Quartz message asynchronously.
+    /// </summary>
+    /// <param name="message">The Quartz message to publish.</param>
+    /// <param name="cancellationToken">Optional cancellation token.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    Task PublishAsync(QuartzMessage message, CancellationToken cancellationToken = default);
 }

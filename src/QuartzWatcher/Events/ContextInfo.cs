@@ -37,7 +37,7 @@ public sealed record ContextInfo
     /// <summary>
     /// The merged job data map for the execution context.
     /// </summary>
-    public required IDictionary<string, object> MergedJobDataMap { get; init; }
+    public required IReadOnlyDictionary<string, object> MergedJobDataMap { get; init; }
 
     /// <summary>
     /// The next scheduled fire time in UTC, if any.
@@ -99,7 +99,7 @@ public sealed record ContextInfo
             FireTimeUtc = context.FireTimeUtc,
             Job = JobInfo.Create(context.JobDetail),
             JobRunTime = context.JobRunTime,
-            MergedJobDataMap = context.MergedJobDataMap,
+            MergedJobDataMap = context.MergedJobDataMap.AsReadOnly(),
             NextFireTimeUtc = context.NextFireTimeUtc,
             PreviousFireTimeUtc = context.PreviousFireTimeUtc,
             Recovering = context.Recovering,

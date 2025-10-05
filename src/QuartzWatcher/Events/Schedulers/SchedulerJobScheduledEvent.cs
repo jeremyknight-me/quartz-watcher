@@ -9,9 +9,12 @@ public sealed record SchedulerJobScheduledEvent : IQuartzEvent
     public required TriggerInfo Trigger { get; init; }
 
     public static SchedulerJobScheduledEvent Create(ITrigger trigger)
-        => new()
+    {
+        ArgumentNullException.ThrowIfNull(trigger, nameof(trigger));
+        return new()
         {
             Trigger = TriggerInfo.Create(trigger)
         };
+    }
 }
 

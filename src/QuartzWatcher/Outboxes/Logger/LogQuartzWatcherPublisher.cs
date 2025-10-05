@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using QuartzWatcher.Events;
 using QuartzWatcher.Publishers;
 
 namespace QuartzWatcher.Outboxes.Logger;
@@ -24,7 +25,8 @@ public sealed class LogQuartzWatcherPublisher : IQuartzWatcherPublisher
         ILogger<LogQuartzWatcherPublisher> logger,
         IOptionsSnapshot<QuartzWatcherSettings> options)
     {
-        _logger = logger;
+        ArgumentNullException.ThrowIfNull(options, nameof(options));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
         LogPublisherSettings settings = LogPublisherSettingsFactory.Create(options.Value);
         _logLevel = settings.GetLogLevel();
@@ -38,6 +40,8 @@ public sealed class LogQuartzWatcherPublisher : IQuartzWatcherPublisher
     /// <returns>A task that represents the asynchronous operation.</returns>
     public Task PublishAsync(QuartzMessage message, CancellationToken cancellationToken = default)
     {
+        ArgumentNullException.ThrowIfNull(message);
+
         if (!_logger.IsEnabled(_logLevel))
         {
             return Task.CompletedTask;

@@ -9,9 +9,12 @@ public sealed record SchedulerJobsResumedEvent : IQuartzEvent
     public required string JobGroup { get; init; }
 
     public static SchedulerJobsResumedEvent Create(string jobGroup)
-        => new()
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(jobGroup, nameof(jobGroup));
+        return new()
         {
             JobGroup = jobGroup
         };
+    }
 }
 

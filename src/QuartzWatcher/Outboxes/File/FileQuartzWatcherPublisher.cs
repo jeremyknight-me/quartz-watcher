@@ -37,13 +37,13 @@ public sealed class FileQuartzWatcherPublisher : IQuartzWatcherPublisher
     /// <summary>
     /// Publishes a Quartz event message to a JSON file.
     /// </summary>
-    /// <param name="quartzEvent">The event to publish.</param>
+    /// <param name="message">The event to publish.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    public async Task PublishAsync(QuartzMessage quartzEvent, CancellationToken cancellationToken = default)
+    public async Task PublishAsync(QuartzMessage message, CancellationToken cancellationToken = default)
     {
         var json = JsonSerializer.Serialize(
-            quartzEvent,
+            message,
             _writeIndented ? _jsonOptionsIndented : _jsonOptions);
 
         if (!Directory.Exists(_path))

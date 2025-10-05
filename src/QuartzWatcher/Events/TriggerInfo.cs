@@ -17,7 +17,7 @@ public sealed record TriggerInfo
     /// <summary>
     /// The data map associated with the trigger.
     /// </summary>
-    public required IDictionary<string, object> DataMap { get; init; }
+    public required IReadOnlyDictionary<string, object> DataMap { get; init; }
 
     /// <summary>
     /// The description of the trigger, if any.
@@ -89,13 +89,19 @@ public sealed record TriggerInfo
     /// </summary>
     public required string TriggerGroup { get; init; }
 
+    /// <summary>
+    /// Creates a new instance of <see cref="TriggerInfo"/> from a trigger.
+    /// </summary>
+    /// <param name="trigger">The trigger.</param>
+    /// <returns>A new <see cref="TriggerInfo"/> instance.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="trigger"/> is null.</exception>
     public static TriggerInfo Create(ITrigger trigger)
     {
         ArgumentNullException.ThrowIfNull(trigger, nameof(trigger));
         return new()
         {
             CalendarName = trigger.CalendarName,
-            DataMap = trigger.JobDataMap,
+            DataMap = trigger.JobDataMap.AsReadOnly(),
             Description = trigger.Description,
             EndTimeUtc = trigger.EndTimeUtc,
             FinalFireTimeUtc = trigger.FinalFireTimeUtc,
