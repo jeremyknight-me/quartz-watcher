@@ -2,23 +2,19 @@
 
 internal static class LogPublisherSettingsFactory
 {
+    private static readonly string _defaultLevel = "Information";
+
     internal static LogPublisherSettings Create(QuartzWatcherSettings settings)
     {
         Dictionary<string, string>? publisherSettings = settings.GetPublisherSettings(LogPublisherSettings.PublisherKey);
-        if (publisherSettings is null || publisherSettings.Count == 0)
-        {
-            throw new ArgumentException("Log publisher settings are not configured.");
-        }
-
-        var level = "Information";
-        if (publisherSettings.TryGetValue(nameof(LogPublisherSettings.Level), out var levelSetting) && !string.IsNullOrWhiteSpace(levelSetting))
-        {
-            level = levelSetting;
-        }
-
+        var level = publisherSettings is not null
+            && publisherSettings.TryGetValue(nameof(LogPublisherSettings.Level), out var levelSetting)
+            && !string.IsNullOrWhiteSpace(levelSetting)
+            ? levelSetting
+            : _defaultLevel;
         return new LogPublisherSettings
         {
-            Level = level!
+            Level = level
         };
     }
 }

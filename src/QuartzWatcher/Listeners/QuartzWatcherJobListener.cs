@@ -71,7 +71,7 @@ internal sealed class QuartzWatcherJobListener : QuartzWatcherListenerBase, IJob
     private async Task CreateMessageAndSendAsync<T>(T @event, CancellationToken cancellationToken)
         where T : IQuartzEvent
     {
-        QuartzMessage message = _messageFactory.CreateSchedulerMessage(@event);
+        QuartzMessage message = _messageFactory.CreateJobMessage(@event);
         await _outbox.SendAsync(message, cancellationToken).ConfigureAwait(false);
     }
 }

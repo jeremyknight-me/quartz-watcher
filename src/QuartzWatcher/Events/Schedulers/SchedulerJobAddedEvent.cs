@@ -17,7 +17,9 @@ public sealed record SchedulerJobAddedEvent : IQuartzEvent
     public required bool RequestsRecovery { get; init; }
 
     public static SchedulerJobAddedEvent Create(IJobDetail jobDetail)
-        => new()
+    {
+        ArgumentNullException.ThrowIfNull(jobDetail, nameof(jobDetail));
+        return new()
         {
             Description = jobDetail.Description,
             Name = jobDetail.Key.Name,
@@ -29,4 +31,5 @@ public sealed record SchedulerJobAddedEvent : IQuartzEvent
             ConcurrentExecutionDisallowed = jobDetail.ConcurrentExecutionDisallowed,
             RequestsRecovery = jobDetail.RequestsRecovery
         };
+    }
 }

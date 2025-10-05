@@ -12,6 +12,14 @@ public sealed class LogQuartzWatcherPublisher : IQuartzWatcherPublisher
     private readonly ILogger<LogQuartzWatcherPublisher> _logger;
     private readonly LogLevel _logLevel;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="LogQuartzWatcherPublisher"/> class.
+    /// </summary>
+    /// <param name="logger">The logger used to write Quartz event messages.</param>
+    /// <param name="options">The options snapshot providing QuartzWatcher settings.</param>
+    /// <remarks>
+    /// This constructor configures the publisher to log Quartz messages using the specified logger and log level from settings.
+    /// </remarks>
     public LogQuartzWatcherPublisher(
         ILogger<LogQuartzWatcherPublisher> logger,
         IOptionsSnapshot<QuartzWatcherSettings> options)

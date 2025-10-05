@@ -18,10 +18,10 @@ internal sealed class QuartzWatcherSchedulerListener : QuartzWatcherListenerBase
         ILogger<QuartzWatcherSchedulerListener> logger,
         IQuartzWatcherOutbox outbox,
         QuartzMessageFactory messageFactory)
-        : base(logger)
+        : base(logger ?? throw new ArgumentNullException(nameof(logger)))
     {
-        _outbox = outbox;
-        _messageFactory = messageFactory;
+        _outbox = outbox ?? throw new ArgumentNullException(nameof(outbox));
+        _messageFactory = messageFactory ?? throw new ArgumentNullException(nameof(messageFactory));
     }
 
     /// <inheritdoc />

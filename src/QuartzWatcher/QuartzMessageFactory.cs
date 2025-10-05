@@ -31,14 +31,27 @@ internal sealed class QuartzMessageFactory
     public QuartzMessage CreateJobMessage<T>(T data) where T : IQuartzEvent
         => CreateMessage(data, EventCategory.Job);
 
+    /// <summary>
+    /// Creates a QuartzMessage for a scheduler event.
+    /// </summary>
+    /// <typeparam name="T">The type of the event data.</typeparam>
+    /// <param name="data">The event data.</param>
+    /// <returns>A QuartzMessage with scheduler category.</returns>
     public QuartzMessage CreateSchedulerMessage<T>(T data) where T : IQuartzEvent
         => CreateMessage(data, EventCategory.Scheduler);
 
+    /// <summary>
+    /// Creates a QuartzMessage for a trigger event.
+    /// </summary>
+    /// <typeparam name="T">The type of the event data.</typeparam>
+    /// <param name="data">The event data.</param>
+    /// <returns>A QuartzMessage with trigger category.</returns>
     public QuartzMessage CreateTriggerMessage<T>(T data) where T : IQuartzEvent
         => CreateMessage(data, EventCategory.Trigger);
 
     private QuartzMessage CreateMessage<T>(T data, EventCategory category) where T : IQuartzEvent
     {
+        ArgumentNullException.ThrowIfNull(data);
         Type eventType = data.GetType();
         return new()
         {

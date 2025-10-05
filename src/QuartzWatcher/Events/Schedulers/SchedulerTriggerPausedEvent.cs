@@ -10,10 +10,13 @@ public sealed record SchedulerTriggerPausedEvent : IQuartzEvent
     public required string TriggerGroup { get; init; }
 
     public static SchedulerTriggerPausedEvent Create(TriggerKey triggerKey)
-        => new()
+    {
+        ArgumentNullException.ThrowIfNull(triggerKey, nameof(triggerKey));
+        return new()
         {
             TriggerName = triggerKey.Name,
             TriggerGroup = triggerKey.Group
         };
+    }
 }
 

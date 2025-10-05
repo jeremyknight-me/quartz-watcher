@@ -17,7 +17,7 @@ public sealed record JobInfo
     /// <summary>
     /// The data map associated with the job.
     /// </summary>
-    public required IDictionary<string, object> DataMap { get; init; }
+    public required IReadOnlyDictionary<string, object> DataMap { get; init; }
 
     /// <summary>
     /// The description of the job, if any.
@@ -54,13 +54,20 @@ public sealed record JobInfo
     /// </summary>
     public required string TypeName { get; init; }
 
+    /// <summary>
+    /// Creates a new instance of <see cref="JobInfo"/> from a job detail.
+    /// </summary>
+    /// <param name="job">The job detail.</param>
+    /// <returns>A new <see cref="JobInfo"/> instance.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="job"/> is null.</exception>
+    /// <exception cref="InvalidOperationException">Thrown when the job type name is null.</exception>
     public static JobInfo Create(IJobDetail job)
     {
         ArgumentNullException.ThrowIfNull(job, nameof(job));
         return new()
         {
             ConcurrentExecutionDisallowed = job.ConcurrentExecutionDisallowed,
-            DataMap = job.JobDataMap,
+            DataMap = job.JobDataMap.AsReadOnly(),
             Description = job.Description,
             Durable = job.Durable,
             Group = job.Key.Group,

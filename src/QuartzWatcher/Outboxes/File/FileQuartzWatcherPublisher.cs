@@ -4,6 +4,9 @@ using QuartzWatcher.Publishers;
 
 namespace QuartzWatcher.Outboxes.File;
 
+/// <summary>
+/// Publishes Quartz events to JSON files in a configured directory.
+/// </summary>
 public sealed class FileQuartzWatcherPublisher : IQuartzWatcherPublisher
 {
     private static readonly JsonSerializerOptions _jsonOptions = new(JsonSerializerDefaults.Web)
@@ -20,6 +23,10 @@ public sealed class FileQuartzWatcherPublisher : IQuartzWatcherPublisher
     private readonly string _path;
     private readonly bool _writeIndented;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="FileQuartzWatcherPublisher"/> class.
+    /// </summary>
+    /// <param name="options">The configuration options.</param>
     public FileQuartzWatcherPublisher(IOptionsSnapshot<QuartzWatcherSettings> options)
     {
         FilePublisherSettings settings = FilePublisherSettingsFactory.Create(options.Value);
@@ -27,6 +34,12 @@ public sealed class FileQuartzWatcherPublisher : IQuartzWatcherPublisher
         _writeIndented = settings.Indent;
     }
 
+    /// <summary>
+    /// Publishes a Quartz event message to a JSON file.
+    /// </summary>
+    /// <param name="quartzEvent">The event to publish.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
     public async Task PublishAsync(QuartzMessage quartzEvent, CancellationToken cancellationToken = default)
     {
         var json = JsonSerializer.Serialize(

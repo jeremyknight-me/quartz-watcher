@@ -6,7 +6,7 @@ internal sealed class InMemoryQuartzWatcherOutbox : IQuartzWatcherOutbox
 
     public InMemoryQuartzWatcherOutbox(InMemoryMessageQueue queue)
     {
-        _queue = queue;
+        _queue = queue ?? throw new ArgumentNullException(nameof(queue));
     }
 
     /// <inheritdoc />

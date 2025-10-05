@@ -90,7 +90,9 @@ public sealed record TriggerInfo
     public required string TriggerGroup { get; init; }
 
     public static TriggerInfo Create(ITrigger trigger)
-        => new()
+    {
+        ArgumentNullException.ThrowIfNull(trigger, nameof(trigger));
+        return new()
         {
             CalendarName = trigger.CalendarName,
             DataMap = trigger.JobDataMap,
@@ -109,4 +111,5 @@ public sealed record TriggerInfo
             TriggerName = trigger.Key.Name,
             TriggerGroup = trigger.Key.Group
         };
+    }
 }
