@@ -11,5 +11,5 @@ internal sealed class InMemoryQuartzWatcherOutbox : IQuartzWatcherOutbox
 
     /// <inheritdoc />
     public async Task SendAsync(QuartzMessage message, CancellationToken cancellationToken = default)
-        => await _queue.Writer.WriteAsync(message, cancellationToken);
+        => await _queue.Writer.WriteAsync(message, cancellationToken).ConfigureAwait(false);
 }

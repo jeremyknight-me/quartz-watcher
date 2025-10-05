@@ -1,6 +1,6 @@
 ﻿namespace QuartzWatcher.Events.Triggers;
 
-public sealed record class TriggerMisfiredEvent : IQuartzEvent
+public sealed record TriggerMisfiredEvent : IQuartzEvent
 {
     private TriggerMisfiredEvent()
     {

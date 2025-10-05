@@ -21,10 +21,14 @@ public sealed record QuartzWatcherSettings
     /// <summary>
     /// Publisher configuration settings, keyed by publisher name.
     /// </summary>
+    [Required]
     public required Dictionary<string, Dictionary<string, string>> Publishers { get; init; }
 
-    // todo: add feature flags for each event type
-
+    /// <summary>
+    /// Retrieves publisher-specific settings for the given publisher key.
+    /// </summary>
+    /// <param name="publisherKey">The key identifying the publisher.</param>
+    /// <returns>A dictionary of settings for the publisher, or an empty dictionary if not found.</returns>
     public Dictionary<string, string> GetPublisherSettings(string publisherKey)
     {
         if (Publishers is null)

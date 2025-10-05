@@ -3,10 +3,17 @@ using QuartzWatcher.Events;
 
 namespace QuartzWatcher;
 
+/// <summary>
+/// Factory for creating QuartzMessage instances from Quartz events.
+/// </summary>
 internal sealed class QuartzMessageFactory
 {
     private readonly IOptionsMonitor<QuartzWatcherSettings> _options;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="QuartzMessageFactory"/> class.
+    /// </summary>
+    /// <param name="options">The options monitor for QuartzWatcher settings.</param>
     public QuartzMessageFactory(IOptionsMonitor<QuartzWatcherSettings> options)
     {
         _options = options;
@@ -15,16 +22,22 @@ internal sealed class QuartzMessageFactory
     private string Application => Settings.ApplicationName;
     private QuartzWatcherSettings Settings => _options.CurrentValue;
 
+    /// <summary>
+    /// Creates a QuartzMessage for a job event.
+    /// </summary>
+    /// <typeparam name="T">The type of the event data.</typeparam>
+    /// <param name="data">The event data.</param>
+    /// <returns>A QuartzMessage with job category.</returns>
     public QuartzMessage CreateJobMessage<T>(T data) where T : IQuartzEvent
-        => CreateMesssage(data, EventCategory.Job);
+        => CreateMessage(data, EventCategory.Job);
 
     public QuartzMessage CreateSchedulerMessage<T>(T data) where T : IQuartzEvent
-        => CreateMesssage(data, EventCategory.Scheduler);
+        => CreateMessage(data, EventCategory.Scheduler);
 
     public QuartzMessage CreateTriggerMessage<T>(T data) where T : IQuartzEvent
-        => CreateMesssage(data, EventCategory.Trigger);
+        => CreateMessage(data, EventCategory.Trigger);
 
-    private QuartzMessage CreateMesssage<T>(T data, EventCategory category) where T : IQuartzEvent
+    private QuartzMessage CreateMessage<T>(T data, EventCategory category) where T : IQuartzEvent
     {
         Type eventType = data.GetType();
         return new()
