@@ -68,11 +68,10 @@ public sealed record ContextInfo
     /// The number of times the job has been refired.
     /// </summary>
     public required int RefireCount { get; init; }
-
     /// <summary>
     /// The scheduled fire time in UTC, if any.
     /// </summary>
-    public DateTimeOffset? ScheduledFireTimeUtc { get; init; }
+    public required DateTimeOffset? ScheduledFireTimeUtc { get; init; }
 
     /// <summary>
     /// The name of the scheduler.
