@@ -35,7 +35,7 @@ internal sealed class InMemoryOutboxWorker : BackgroundService
         await foreach (QuartzMessage message in _queue.Reader.ReadAllAsync(stoppingToken))
         {
             using IServiceScope scope = _serviceScopeFactory.CreateScope();
-            IEnumerable<IQuartzWatcherPublisher> publishers = scope.ServiceProvider.GetRequiredService<IEnumerable<IQuartzWatcherPublisher>>();
+            IEnumerable<IQuartzWatcherPublisher> publishers = scope.ServiceProvider.GetServices<IQuartzWatcherPublisher>();
 
             // todo: attempt to find a way to make this more efficient
             foreach (IQuartzWatcherPublisher publisher in publishers)

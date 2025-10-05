@@ -25,6 +25,7 @@ public sealed record TriggerFiredEvent : IQuartzEvent
     /// <param name="trigger">The trigger that fired.</param>
     /// <param name="context">The job execution context.</param>
     /// <returns>A new event instance.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="trigger"/> or <paramref name="context"/> is null.</exception>
     public static TriggerFiredEvent Create(ITrigger trigger, IJobExecutionContext context)
     {
         ArgumentNullException.ThrowIfNull(context, nameof(context));

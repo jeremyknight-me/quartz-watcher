@@ -31,6 +31,7 @@ public sealed record TriggerCompletedEvent : IQuartzEvent
     /// <param name="context">The job execution context.</param>
     /// <param name="schedulerInstruction">The scheduler instruction.</param>
     /// <returns>A new <see cref="TriggerCompletedEvent"/> instance.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="trigger"/> or <paramref name="context"/> is null.</exception>
     public static TriggerCompletedEvent Create(ITrigger trigger, IJobExecutionContext context, SchedulerInstruction schedulerInstruction)
     {
         ArgumentNullException.ThrowIfNull(trigger, nameof(trigger));
