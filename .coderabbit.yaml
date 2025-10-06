@@ -15,7 +15,7 @@ language: "en-US"
 
 # Set the tone of reviews and chat. Example: 'You must use talk like Mr. T. I pity the fool who doesn't!'
 # Default: ""
-tone_instructions: ""
+tone_instructions: "Be thorough and focus on security and maintainability"
 
 # Enable early-access features.
 # Default: false
