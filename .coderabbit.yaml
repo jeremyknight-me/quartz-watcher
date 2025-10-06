@@ -461,7 +461,7 @@ reviews:
     pmd:
       # Enable PMD - PMD is an extensible multilanguage static code analyzer. It’s mainly concerned with Java. - v7.15.0
       # Default: true
-      enabled: true
+      enabled: false
 
       # Optional path to the PMD configuration file relative to the repository.
       config_file: "example-value"
