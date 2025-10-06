@@ -345,7 +345,7 @@ reviews:
       enabled: false
 
       # Optional path to the SwiftLint configuration file relative to the repository. This is useful when the configuration file is named differently than the default '.swiftlint.yml' or '.swiftlint.yaml'.
-      config_file: "example-value"
+      #config_file: "example-value"
 
     # PHPStan is a tool to analyze PHP code.
     # Default: {}
@@ -381,7 +381,7 @@ reviews:
       enabled: false
 
       # Optional path to the golangci-lint configuration file relative to the repository. Useful when the configuration file is named differently than the default '.golangci.yml', '.golangci.yaml', '.golangci.toml', '.golangci.json'.
-      config_file: "example-value"
+      #config_file: "example-value"
 
     # YAMLlint is a linter for YAML files.
     # Default: {}
@@ -412,7 +412,7 @@ reviews:
       enabled: false
 
       # Optional path to the detekt configuration file relative to the repository.
-      config_file: "example-value"
+      #config_file: "example-value"
 
     # ESLint is a static code analysis tool for JavaScript files.
     # Default: {}
@@ -464,7 +464,7 @@ reviews:
       enabled: false
 
       # Optional path to the PMD configuration file relative to the repository.
-      config_file: "example-value"
+      #config_file: "example-value"
 
     # Cppcheck is a static code analysis tool for the C and C++ programming languages.
     # Default: {}
@@ -481,7 +481,7 @@ reviews:
       enabled: true
 
       # Optional path to the Semgrep configuration file relative to the repository.
-      config_file: "example-value"
+      #config_file: "example-value"
 
     # CircleCI tool is a static checker for CircleCI config files.
     # Default: {}
