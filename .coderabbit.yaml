@@ -584,12 +584,11 @@ reviews:
 chat:
   # Generate art in response to chat messages. CodeRabbit expresses emotions as either ASCII or Emoji art.
   # Default: true
-  art: true
+  art: false
 
   # Enable the bot to reply automatically without requiring the user to tag it.
   # Default: true
-  auto_reply: true
-
+  auto_reply: false
   # Configuration for integrations
   # Default: {}
   integrations:
