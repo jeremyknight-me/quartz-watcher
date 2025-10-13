@@ -121,7 +121,8 @@ reviews:
   # Generate a poem in the walkthrough comment.
   # Default: true
   poem: false
-
+  # Reduce noise during reviews
+  in_progress_fortune: false
   # Labeling Instructions - Provide guidelines for suggesting labels for the PR/MR. When specific labels or instructions are provided, only those labels are considered, though previous examples are still used to inform the suggestions. If no such labels are provided, suggestions are based solely on previous PR/MRs.
   # Default: []
   labeling_instructions: []
