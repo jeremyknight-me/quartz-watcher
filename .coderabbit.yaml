@@ -129,12 +129,18 @@ reviews:
 
   # Specify file patterns to include or exclude in a review using glob patterns (e.g., !dist/**, src/**). These patterns also apply to 'git sparse-checkout', including specified patterns and ignoring excluded ones (starting with '!') when cloning the repository.
   # Default: []
-  path_filters: []
+  path_filters:
+    - "!**/node_modules/**"
+    - "!**/dist/**"
+    - "!**/build/**"
+    - "!**/.git/**"
+    - "!**/.cache/**"
+    - "!**/.venv/**"
+    - "!**/venv/**"
 
   # Path Instructions - Provide specific additional guidelines for code review based on file paths.
   # Default: []
   path_instructions: []
-
   # Abort the in-progress review if the pull request is closed or merged.
   # Default: true
   abort_on_close: true
